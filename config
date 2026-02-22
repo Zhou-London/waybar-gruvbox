@@ -62,16 +62,15 @@
         }
     },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{icon} {text}",
         "return-type": "json",
         "max-length": 45,
-        "format-icons": {
-            "spotify": "",
-            "default": "󰎆"
-        },
         "escape": true,
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F 2>/dev/null",
-        "on-click": "playerctl play-pause"
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{title}}\", \"alt\": \"{{playerName}}\"}' -F",
+        "on-click": "playerctl play-pause",
+        "format-icons": {
+            "default": ""
+        }
     },
     "custom/separator": {
         "format": "│",
