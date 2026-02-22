@@ -1,31 +1,24 @@
-/* =============================================================================
- * Waybar Gruvbox Theme
- * Author: Claude
- * Font: UbuntuSansMono Nerd Font (Bold 700)
- * =============================================================================
- */
-
 /* Gruvbox Color Palette */
-@define-color bg0_h     #1d2021;
-@define-color bg0       #282828;
-@define-color bg1       #3c3836;
-@define-color bg2       #504945;
-@define-color bg3       #665c54;
-@define-color fg        #ebdbb2;
-@define-color fg2       #d5c4a1;
-@define-color fg3       #bdae93;
-@define-color red       #fb4934;
-@define-color green     #b8bb26;
-@define-color yellow    #fabd2f;
-@define-color blue      #83a598;
-@define-color purple    #d3869b;
-@define-color aqua      #8ec07c;
-@define-color orange    #fe8019;
-@define-color gray      #928374;
+@define-color bg0_h #1d2021;
+@define-color bg0 #282828;
+@define-color bg1 #3c3836;
+@define-color bg2 #504945;
+@define-color bg3 #665c54;
+@define-color fg #ebdbb2;
+@define-color fg2 #d5c4a1;
+@define-color fg3 #bdae93;
+@define-color red #fb4934;
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color blue #83a598;
+@define-color purple #d3869b;
+@define-color aqua #8ec07c;
+@define-color orange #fe8019;
+@define-color gray #928374;
 
 /* Global Styling */
 * {
-    font-family: "UbuntuSansMono Nerd Font", "UbuntuMono Nerd Font", monospace;
+    font-family: "GoogleSansCode Nerd Font", monospace;
     font-size: 14px;
     font-weight: 700;
     min-height: 0;
@@ -35,7 +28,8 @@
 
 /* Main Bar */
 window#waybar {
-    background: transparent;
+    background: @bg0;
+    border-radius: 10px;
     color: @fg;
 }
 
@@ -67,8 +61,9 @@ tooltip label {
 #temperature,
 #battery,
 #clock,
-#custom-separator {
-    background: @bg0;
+#custom-separator,
+#custom-arch {
+    background: transparent;
     padding: 0 14px;
     margin: 0;
 }
@@ -76,7 +71,6 @@ tooltip label {
 /* Workspaces */
 #workspaces {
     padding: 0 4px;
-    border-radius: 12px 0 0 12px;
 }
 
 #workspaces button {
@@ -88,14 +82,14 @@ tooltip label {
 }
 
 #workspaces button:hover {
-    color: @fg;
+    color: transparent;
 }
 
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button.visible {
     color: @yellow;
-    background: @bg1;
+    background: transparent;
 }
 
 #workspaces button.urgent {
@@ -118,7 +112,7 @@ window#waybar.empty #window {
 
 /* Center Media Player */
 #custom-media {
-    background: linear-gradient(135deg, @bg1, @bg2);
+    background: transparent;
     color: @green;
     border-radius: 12px;
     padding: 0 20px;
@@ -139,11 +133,11 @@ window#waybar.empty #window {
     margin-left: 10px;
 }
 
-#tray > .passive {
+#tray>.passive {
     -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
     -gtk-icon-effect: highlight;
     color: @red;
 }
@@ -157,6 +151,7 @@ window#waybar.empty #window {
 /* Network */
 #network {
     color: @blue;
+    transition: color 0.2s ease;
 }
 
 #network.disconnected {
@@ -170,6 +165,7 @@ window#waybar.empty #window {
 /* Audio */
 #pulseaudio {
     color: @purple;
+    transition: color 0.2s ease;
 }
 
 #pulseaudio.muted {
@@ -183,24 +179,28 @@ window#waybar.empty #window {
 /* System Stats */
 #cpu {
     color: @orange;
+    transition: color 0.2s ease;
 }
 
 #memory {
     color: @aqua;
+    transition: color 0.2s ease;
 }
 
 #temperature {
     color: @green;
+    transition: color 0.2s ease;
 }
 
 #temperature.critical {
     color: @red;
-    background: alpha(@red, 0.2);
+    background: transparent;
 }
 
 /* Battery */
 #battery {
     color: @green;
+    transition: color 0.2s ease;
 }
 
 #battery.charging,
@@ -214,7 +214,7 @@ window#waybar.empty #window {
 
 #battery.critical:not(.charging) {
     color: @red;
-    background: alpha(@red, 0.2);
+    background: transparent;
 }
 
 /* Clock */
@@ -222,6 +222,16 @@ window#waybar.empty #window {
     color: @yellow;
     border-radius: 0 12px 12px 0;
     padding-right: 16px;
+    transition: color 0.2s ease;
+}
+
+/* Arch Icon */
+#custom-arch {
+    color: @blue;
+    background: transparent;
+    border-radius: 12px 0 0 12px;
+    padding: 0 16px;
+    transition: color 0.2s ease;
 }
 
 /* Hover Effects */
@@ -231,8 +241,9 @@ window#waybar.empty #window {
 #memory:hover,
 #temperature:hover,
 #battery:hover,
-#clock:hover {
-    background: @bg1;
+#clock:hover,
+#custom-arch:hover {
+    color: @yellow;
 }
 
 /* Right Side Grouped Background */
@@ -244,13 +255,14 @@ window#waybar.empty #window {
 #temperature,
 #battery,
 #clock,
-#custom-separator {
-    background: @bg0;
+#custom-separator,
+#custom-arch {
+    background: transparent;
 }
 
 /* Mode Indicator */
 #mode {
-    background: @red;
+    background: transparent;
     color: @bg0;
     padding: 0 12px;
     border-radius: 8px;

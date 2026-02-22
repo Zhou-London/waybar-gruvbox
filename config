@@ -7,6 +7,7 @@
     "margin-left": 10,
     "margin-right": 10,
     "modules-left": [
+        "custom/arch",
         "hyprland/workspaces",
         "hyprland/window"
     ],
@@ -75,6 +76,13 @@
     "custom/separator": {
         "format": "│",
         "tooltip": false
+    },
+    "custom/arch": {
+        "format": "󰣇",
+        "tooltip": true,
+        "tooltip-format": "Arch Linux",
+        "on-click": "kitty -e yazi",
+        "on-click-right": "echo -e 'Cancel\nShutdown' | fuzzel --dmenu --prompt 'You mean it? ' | grep -q 'Shutdown' && systemctl poweroff"
     },
     "tray": {
         "icon-size": 16,
